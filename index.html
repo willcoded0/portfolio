@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <h1 class="logo">William Hall/h1>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="modeToggle">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h2>Hi, I'm <span class="highlight">Your Name</span></h2>
+    <p>Aspiring Software Developer | MIS Major</p>
+    <a href="#projects" class="btn">See My Work</a>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Todo App</h3>
+        <p>A simple app to manage daily tasks.</p>
+        <button class="expand-btn">More Info</button>
+        <div class="extra-info">Built with HTML, CSS, and JavaScript. Features add/delete and local storage.</div>
+      </div>
+      <div class="project-card">
+        <h3>Weather Dashboard</h3>
+        <p>Live weather info using an API.</p>
+        <button class="expand-btn">More Info</button>
+        <div class="extra-info">Displays weather data dynamically. Uses fetch API.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>Python</span>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: <span id="email">will_hall1@baylor.edu</span> 
+      <button id="copyEmail">Copy</button>
+    </p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
