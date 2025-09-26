@@ -55,6 +55,9 @@ nav a, nav button {
 #projects, #skills, #contact {
   padding: 3rem 2rem;
 }
+#projects {
+  margin-top: 6rem;  /* pushes the whole section down */
+}
 
 .project-grid {
   display: grid;
