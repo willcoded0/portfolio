@@ -96,23 +96,24 @@ nav a, nav button {
   gap: 20px;
 }
 .extra-info {
-  display: flex;          /* put content in a row */
-  flex-direction: row;    /* side-by-side instead of stacked */
+  display: flex;          /* makes children side by side */
+  flex-direction: row;    /* horizontal layout */
   justify-content: space-between;
-  align-items: flex-start; /* aligns top edges */
-  gap: 20px;              /* space between text and image */
+  align-items: flex-start; /* aligns them at the top */
+  gap: 20px;              /* space between list and image */
 }
 
 .extra-info ul {
+  flex: 1;                /* let list take available space */
   margin: 0;
-  padding: 0;
-  list-style: disc inside;
+  padding-left: 20px;     /* keeps bullet spacing */
 }
 
 .extra-info img {
-  max-width: 200px;  /* keeps it from blowing up */
+  max-width: 150px;  /* smaller GIF */
   height: auto;
 }
+
 
 }
 .dark-mode {
