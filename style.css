@@ -145,4 +145,27 @@ body.dark-mode header {
 body.dark-mode .highlight {
   color: #00aaff;       /* highlight also blue */
 }
+.project-card {
+  background: #fff;   /* light mode */
+  color: #000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
+/* Dark mode overrides */
+body.dark-mode .project-card {
+  background: #2b2b2b;   /* dark gray box */
+  color: #00aaff;        /* blue text */
+  box-shadow: 0 2px 8px rgba(255,255,255,0.1); /* subtle lighter shadow */
+}
+.extra-info {
+  background: transparent; /* inherits card color */
+  padding: 10px;
+}
+
+/* Dark mode */
+body.dark-mode .extra-info {
+  background: transparent; 
+  color: #00aaff;
+}
