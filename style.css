@@ -95,6 +95,12 @@ nav a, nav button {
   align-items: center;
   gap: 20px;
 }
+.extra-info img {
+  max-width: 300px;   /* keeps it from being too big */
+  height: auto;       /* keeps proportions correct */
+  display: block;     /* removes weird spacing issues */
+  margin-top: 10px;   /* adds space above the image */
+}
 .dark-mode {
   background: #111;
   color: #f4f4f4;
