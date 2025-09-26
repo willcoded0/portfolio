@@ -97,9 +97,4 @@ nav a, nav button {
 }
 .dark-mode header { background: #000; }
 .dark-mode .btn { background: #ff9800; }
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: black;
-    color: white;
-  }
-}
+
