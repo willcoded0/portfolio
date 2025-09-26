@@ -95,11 +95,25 @@ nav a, nav button {
   align-items: center;
   gap: 20px;
 }
+.extra-info {
+  display: flex;          /* put content in a row */
+  flex-direction: row;    /* side-by-side instead of stacked */
+  justify-content: space-between;
+  align-items: flex-start; /* aligns top edges */
+  gap: 20px;              /* space between text and image */
+}
+
+.extra-info ul {
+  margin: 0;
+  padding: 0;
+  list-style: disc inside;
+}
+
 .extra-info img {
-  max-width: 300px;   /* keeps it from being too big */
-  height: auto;       /* keeps proportions correct */
-  display: block;     /* removes weird spacing issues */
-  margin-top: 10px;   /* adds space above the image */
+  max-width: 200px;  /* keeps it from blowing up */
+  height: auto;
+}
+
 }
 .dark-mode {
   background: #111;
