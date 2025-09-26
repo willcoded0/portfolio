@@ -111,7 +111,7 @@ nav a, nav button {
 
 .extra-info img {
   max-width: 150px;  /* smaller GIF */
-  height: 150px;
+  height: auto;
 }
 
 
