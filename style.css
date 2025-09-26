@@ -90,7 +90,11 @@ nav a, nav button {
   background: #eee;
   border-radius: 5px;
 }
-
+.project-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 .dark-mode {
   background: #111;
   color: #f4f4f4;
