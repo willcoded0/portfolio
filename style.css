@@ -169,3 +169,12 @@ body.dark-mode .extra-info {
   background: transparent; 
   color: #00aaff;
 }
+.project-row {
+  display: flex;
+  gap: 1.5rem; /* space between the two side-by-side cards */
+  margin-bottom: 2rem; /* spacing below the row */
+}
+
+.project-card {
+  flex: 1;
+}
