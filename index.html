@@ -316,6 +316,7 @@
     /* Section Headers */
     .section-header {
       margin-bottom: 4rem;
+      text-align: center;
     }
 
     .section-label {
@@ -540,16 +541,33 @@
 
     /* Skills Section */
     #skills {
-      background: var(--bg-primary);
-      margin: 0 2rem;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
+      padding: 6rem 2rem;
+    }
+
+    #skills .section-header {
+      max-width: 1100px;
+      margin: 0 auto 4rem auto;
+      text-align: center;
     }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1100px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .skill-category {
@@ -789,11 +807,6 @@
       .contact-links {
         flex-direction: column;
         align-items: center;
-      }
-
-      #skills {
-        margin: 0;
-        border-radius: 0;
       }
     }
 
