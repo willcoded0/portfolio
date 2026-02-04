@@ -1,108 +1,1220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Hall | Systems Engineer & Security Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a24;
+      --accent-cyan: #00d4ff;
+      --accent-green: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-orange: #ff6b35;
+      --text-primary: #f0f0f5;
+      --text-secondary: #8888a0;
+      --text-muted: #555566;
+      --border-color: #2a2a3a;
+      --glow-cyan: 0 0 30px rgba(0, 212, 255, 0.3);
+      --glow-green: 0 0 30px rgba(0, 255, 136, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated background grid */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    nav .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo::before {
+      content: '>';
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-cyan);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Main content */
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 8rem;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 .highlight {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-subtitle .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em;
+      background: var(--accent-cyan);
+      animation: blink 1s infinite;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.875rem 2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      color: var(--bg-primary);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* Terminal Card */
+    .terminal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .terminal-header {
+      background: var(--bg-card);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red { background: #ff5f56; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #27ca40; }
+
+    .terminal-title {
+      margin-left: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .terminal-line {
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeInLine 0.5s forwards;
+    }
+
+    .terminal-line:nth-child(1) { animation-delay: 0.2s; }
+    .terminal-line:nth-child(2) { animation-delay: 0.4s; }
+    .terminal-line:nth-child(3) { animation-delay: 0.6s; }
+    .terminal-line:nth-child(4) { animation-delay: 0.8s; }
+    .terminal-line:nth-child(5) { animation-delay: 1s; }
+    .terminal-line:nth-child(6) { animation-delay: 1.2s; }
+    .terminal-line:nth-child(7) { animation-delay: 1.4s; }
+
+    @keyframes fadeInLine {
+      to { opacity: 1; }
+    }
+
+    .terminal-prompt {
+      color: var(--accent-green);
+    }
+
+    .terminal-command {
+      color: var(--accent-cyan);
+    }
+
+    .terminal-output {
+      color: var(--text-secondary);
+    }
+
+    .terminal-highlight {
+      color: var(--accent-orange);
+    }
+
+    /* Section Headers */
+    .section-header {
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-image {
+      height: 200px;
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-icon {
+      font-size: 4rem;
+      opacity: 0.8;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--accent-cyan);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .project-link:hover {
+      color: var(--accent-cyan);
+    }
+
+    /* Featured Project */
+    .featured-project {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .featured-project .project-image {
+      height: 100%;
+      min-height: 350px;
+    }
+
+    .featured-project .project-content {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.75rem;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      color: var(--bg-primary);
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .featured-project .project-title {
+      font-size: 1.8rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list li {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+    }
+
+    /* Infrastructure Diagram */
+    .infra-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .infra-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      position: relative;
+    }
+
+    .infra-node.main {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 255, 136, 0.2));
+      border-color: var(--accent-cyan);
+    }
+
+    .infra-connector {
+      width: 2px;
+      height: 20px;
+      background: var(--border-color);
+    }
+
+    .infra-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Skills Section */
+    #skills {
+      background: var(--bg-secondary);
+      margin: 0 2rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      padding: 2rem;
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .skill-category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .skill-category-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .skill-item:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+    }
+
+    .experience-item {
+      padding-left: 3rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .experience-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .experience-company {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .experience-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Contact Section */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s;
+      min-width: 200px;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--bg-card);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-value {
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 4rem;
+    }
+
+    .footer-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-description {
+        margin: 0 auto 2rem;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav>
-      <h1 <span class="highlight logo">William Hall</span></h1>
-      <ul>
+  <div class="bg-grid"></div>
+  <div class="bg-gradient"></div>
+
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">william_hall</a>
+      <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><button id="modeToggle">🌙</button></li>
       </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="hero">
-    <h2>Hi, I'm <span class="highlight">William Hall</span></h2>
-    <p>Aspiring Data Analyst/Software Developer | Tech Enthusiast | MIS Major Graduating Spring 2027</p>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-<div class="project-row">
-  <div class="project-card">
-    <h3>AI-Powered Discord Message Analyzer Bot</h3>
-    <p>Python bot that detects certain language and automates role management in Discord.</p>
-    <button class="expand-btn">More Info</button>
-    <div class="extra-info">
-      • Uses keyword heuristics and OpenAI API for message scoring<br>
-      • Automates role rotation and reports when a users messages contain keywords<br>
-      • Built with Python, Discord.py, Asyncio, Regex
-      <br><br>
-      <a href="https://github.com/willcoded0/Role-Rotator" target="_blank">View on GitHub</a>
     </div>
-  </div>
+  </nav>
 
-  <div class="project-card">
-    <h3>Pokémon Fangame</h3>
-    <p>A full Pokémon fangame created in RPG Maker XP with custom maps, storylines, and Pokémon battles.</p>
-    <button class="expand-btn">More Info</button>
-    <div class="extra-info">
-      <ul>
-        <li>Custom storylines and gym battles</li>
-        <li>Original maps and environments built in RPG Maker XP</li>
-        <li>Scripted battle mechanics using Ruby.</li>
-      </ul>
-      <img src="pokemon-mew.gif" alt="Mascot of Mew, a Pokémon used in my fangame">
-    </div>
-  </div>
-</div>
+  <main>
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Hi, I'm <span class="highlight">William Hall</span></h1>
+          <div class="hero-subtitle">
+            <span>Systems Engineer & Security Analyst</span>
+            <span class="cursor"></span>
+          </div>
+          <p class="hero-description">
+            MIS student at Baylor University with a passion for building secure infrastructure, 
+            deploying AI systems, and protecting digital assets. Currently investigating fraud 
+            at FanDuel while running a homelab that would make enterprise admins jealous.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <span>→</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">william@proxmox:~</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="terminal-prompt">$ </span>
+              <span class="terminal-command">neofetch --short</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">OS: </span>
+              <span class="terminal-highlight">Proxmox VE 8.x</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">Uptime: </span>
+              <span class="terminal-highlight">10+ years in hardware</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">VMs Running: </span>
+              <span class="terminal-highlight">Linux, Game Servers, LLMs</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">Network: </span>
+              <span class="terminal-highlight">Cloudflare Zero Trust</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-output">Status: </span>
+              <span class="terminal-highlight">Seeking Summer 2026 Internship</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">$ </span>
+              <span class="terminal-command">_</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="project-card">
-  <h3>Bank Transactions Spend & Income Dashboard</h3>
-  <p>Python and Power BI solution for analyzing financial transactions with automated insights.</p>
-  <button class="expand-btn">More Info</button>
-  <div class="extra-info">
-    <ul>
-      <li>Ingested and auto-categorized bank + Cash App exports (Python, pandas)</li>
-      <li>Reconciled Cash App loads with end-merchant charges to prevent double-counting</li>
-      <li>Modeled KPIs: income vs spend, savings rate, recurring subscriptions</li>
-      <li>Published a Power BI dashboard with 1-click monthly refresh</li>
-      <li>Delivered monthly summaries and flagged subscription/anomaly spend</li>
-    </ul>
-  </div>
-</div>
-  </section>
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="section-header fade-in">
+        <p class="section-label">// What I've Built</p>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-list">
-      <span>HTML</span>
-      <span>RUBY</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>Python</span>
-      <span>SQL</span>
-    </div>
-  </section>
+      <div class="projects-grid">
+        <!-- Featured: Homelab -->
+        <div class="project-card featured-project fade-in">
+          <div class="project-image">
+            <div class="infra-diagram">
+              <div class="infra-node main">☁️ Cloudflare Tunnel</div>
+              <div class="infra-connector"></div>
+              <div class="infra-node">🖥️ Proxmox VE Host</div>
+              <div class="infra-connector"></div>
+              <div class="infra-row">
+                <div class="infra-node">🐧 LXC</div>
+                <div class="infra-node">🎮 VM</div>
+                <div class="infra-node">🤖 AI</div>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <span class="featured-badge">⭐ FEATURED PROJECT</span>
+            <h3 class="project-title">Homelab Virtualization & Security Infrastructure</h3>
+            <p class="project-description">
+              Enterprise-grade home infrastructure running on Proxmox VE with secure external access, 
+              GPU passthrough for AI workloads, and zero-trust networking principles.
+            </p>
+            <ul class="feature-list">
+              <li>Multiple VMs/LXCs running Linux services, game servers, databases</li>
+              <li>GPU passthrough for hardware-accelerated AI inference</li>
+              <li>Cloudflare Tunnel for secure, zero-trust service exposure</li>
+              <li>Automated backups, network bridges, and storage pools</li>
+            </ul>
+            <div class="project-tags">
+              <span class="project-tag">Proxmox</span>
+              <span class="project-tag">Linux</span>
+              <span class="project-tag">Cloudflare</span>
+              <span class="project-tag">Networking</span>
+              <span class="project-tag">GPU Passthrough</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/willcoded0/homelab-infra-proxmox" class="project-link" target="_blank">
+                <span>📁</span> View Repository
+              </a>
+            </div>
+          </div>
+        </div>
 
-  <!-- Contact -->
-<!-- Contact -->
-<section id="contact">
-  <h2>Contact Me</h2>
-  <p>
-    Email: <span id="email">will_hall1@baylor.edu</span> 
-    <button id="copyEmail">Copy</button>
-  </p>
-  <p>
-    LinkedIn: <a href="https://www.linkedin.com/in/william-hall-7091572a0" target="_blank">
-      linkedin.com/in/william-hall-7091572a0
-    </a>
-  </p>
-</section>
+        <!-- Local LLM -->
+        <div class="project-card fade-in">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(0, 212, 255, 0.2));">
+            <span class="project-icon">🤖</span>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Ollama</span>
+              <span class="project-tag">Qwen</span>
+              <span class="project-tag">REST API</span>
+              <span class="project-tag">GPU</span>
+            </div>
+            <h3 class="project-title">Local LLM Deployment</h3>
+            <p class="project-description">
+              Self-hosted large language model using Qwen via Ollama, exposed as a LAN-accessible 
+              API endpoint for other homelab services with GPU acceleration.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/willcoded0/homelab-llm-qwen" class="project-link" target="_blank">
+                <span>📁</span> View Repository
+              </a>
+            </div>
+          </div>
+        </div>
 
-  <script src="script.js"></script>
+        <!-- Minecraft + Cloudflare -->
+        <div class="project-card fade-in">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 212, 255, 0.2));">
+            <span class="project-icon">🎮</span>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Cloudflare Tunnel</span>
+              <span class="project-tag">Dynmap</span>
+              <span class="project-tag">DNS</span>
+            </div>
+            <h3 class="project-title">Game Server + Web Map</h3>
+            <p class="project-description">
+              Minecraft server with Dynmap web interface securely exposed to the internet via 
+              Cloudflare Tunnel, demonstrating reverse proxy and DNS configuration skills.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/willcoded0/minecraft-dynmap-cloudflare-tunnel" class="project-link" target="_blank">
+                <span>📁</span> View Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Discord Bot -->
+        <div class="project-card fade-in">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(168, 85, 247, 0.2));">
+            <span class="project-icon">💬</span>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">OpenAI API</span>
+              <span class="project-tag">Discord.py</span>
+            </div>
+            <h3 class="project-title">AI-Powered Discord Analyzer</h3>
+            <p class="project-description">
+              Intelligent bot using OpenAI API for message analysis, pattern recognition, 
+              and automated role management based on behavioral metrics.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/willcoded0/Role-Rotator" class="project-link" target="_blank">
+                <span>📁</span> View Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Power BI Dashboard -->
+        <div class="project-card fade-in">
+          <div class="project-image" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 255, 136, 0.2));">
+            <span class="project-icon">📊</span>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Pandas</span>
+              <span class="project-tag">Power BI</span>
+            </div>
+            <h3 class="project-title">Financial Analytics Dashboard</h3>
+            <p class="project-description">
+              Automated ETL pipeline ingesting bank transactions, reconciling payments, 
+              and visualizing spend vs. income trends with anomaly detection.
+            </p>
+            <div class="project-links">
+              <a href="#" class="project-link">
+                <span>🔒</span> Private Repository
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="section-header fade-in">
+        <p class="section-label">// Tech Stack</p>
+        <h2 class="section-title">Skills & Tools</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category fade-in">
+          <div class="skill-category-header">
+            <div class="skill-icon">🛡️</div>
+            <h3 class="skill-category-title">Security & Risk</h3>
+          </div>
+          <div class="skill-list">
+            <span class="skill-item">Fraud Investigation</span>
+            <span class="skill-item">AML Compliance</span>
+            <span class="skill-item">Threat Detection</span>
+            <span class="skill-item">Risk Assessment</span>
+            <span class="skill-item">Anomaly Analysis</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <div class="skill-category-header">
+            <div class="skill-icon">🖥️</div>
+            <h3 class="skill-category-title">Systems & Infra</h3>
+          </div>
+          <div class="skill-list">
+            <span class="skill-item">Linux CLI</span>
+            <span class="skill-item">Proxmox VE</span>
+            <span class="skill-item">VMs / LXC</span>
+            <span class="skill-item">Networking</span>
+            <span class="skill-item">GPU Passthrough</span>
+            <span class="skill-item">Bash Scripting</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <div class="skill-category-header">
+            <div class="skill-icon">💻</div>
+            <h3 class="skill-category-title">Development</h3>
+          </div>
+          <div class="skill-list">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">JavaScript</span>
+            <span class="skill-item">SQL</span>
+            <span class="skill-item">HTML/CSS</span>
+            <span class="skill-item">Git / GitHub</span>
+            <span class="skill-item">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <div class="skill-category-header">
+            <div class="skill-icon">🔧</div>
+            <h3 class="skill-category-title">Hardware</h3>
+          </div>
+          <div class="skill-list">
+            <span class="skill-item">PC Building</span>
+            <span class="skill-item">Diagnostics</span>
+            <span class="skill-item">BIOS/UEFI</span>
+            <span class="skill-item">Thermal Management</span>
+            <span class="skill-item">Component Repair</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <div class="skill-category-header">
+            <div class="skill-icon">☁️</div>
+            <h3 class="skill-category-title">Cloud & Tools</h3>
+          </div>
+          <div class="skill-list">
+            <span class="skill-item">Cloudflare</span>
+            <span class="skill-item">Zero Trust</span>
+            <span class="skill-item">DNS Config</span>
+            <span class="skill-item">Power BI</span>
+            <span class="skill-item">Ollama</span>
+          </div>
+        </div>
+
+        <div class="skill-category fade-in">
+          <div class="skill-category-header">
+            <div class="skill-icon">🤖</div>
+            <h3 class="skill-category-title">AI / ML</h3>
+          </div>
+          <div class="skill-list">
+            <span class="skill-item">OpenAI API</span>
+            <span class="skill-item">Local LLMs</span>
+            <span class="skill-item">Prompt Engineering</span>
+            <span class="skill-item">Model Deployment</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="section-header fade-in">
+        <p class="section-label">// Career Path</p>
+        <h2 class="section-title">Experience</h2>
+      </div>
+
+      <div class="experience-timeline">
+        <div class="experience-item fade-in">
+          <span class="experience-date">Jul 2025 – Present</span>
+          <h3 class="experience-title">Fraud Analyst (FanDuel)</h3>
+          <p class="experience-company">Support Services Group · Waco, TX</p>
+          <p class="experience-description">
+            Investigate and resolve AML, identity theft, and fraud cases to protect company and 
+            customer assets. Analyze behavioral patterns and transaction anomalies to identify 
+            security threats in a high-volume environment.
+          </p>
+        </div>
+
+        <div class="experience-item fade-in">
+          <span class="experience-date">2014 – Present</span>
+          <h3 class="experience-title">PC Hardware & Systems Engineering</h3>
+          <p class="experience-company">Self-Directed</p>
+          <p class="experience-description">
+            10+ years building, troubleshooting, and repairing PC hardware. Experience with 
+            CPU/GPU installations, motherboard replacements, BIOS configuration, and thermal 
+            management across desktops, laptops, and small-form-factor systems.
+          </p>
+        </div>
+
+        <div class="experience-item fade-in">
+          <span class="experience-date">Expected May 2027</span>
+          <h3 class="experience-title">B.B.A. Management Information Systems</h3>
+          <p class="experience-company">Baylor University · Waco, TX</p>
+          <p class="experience-description">
+            GPA: 3.5 — Focusing on systems engineering, data analytics, and cybersecurity 
+            applications in business environments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="section-header fade-in">
+        <p class="section-label">// Let's Connect</p>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+
+      <div class="contact-links fade-in">
+        <a href="mailto:will_hall1@baylor.edu" class="contact-link">
+          <div class="contact-icon">📧</div>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">will_hall1@baylor.edu</span>
+        </a>
+        <a href="https://www.linkedin.com/in/william-hall-7091572a0/" class="contact-link" target="_blank">
+          <div class="contact-icon">💼</div>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">william-hall</span>
+        </a>
+        <a href="https://github.com/willcoded0" class="contact-link" target="_blank">
+          <div class="contact-icon">🐙</div>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">willcoded0</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      Built with ☕ and late nights · © 2025 William Hall
+    </p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
