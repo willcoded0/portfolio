@@ -810,6 +810,257 @@
       }
     }
 
+    /* Chat Widget */
+    .chat-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 2000;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px var(--accent-blue-glow);
+      transition: all 0.3s;
+      font-size: 1.4rem;
+      color: var(--text-white);
+    }
+
+    .chat-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px var(--accent-blue-glow);
+    }
+
+    .chat-toggle.open {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      box-shadow: none;
+    }
+
+    .chat-window {
+      position: fixed;
+      bottom: 5rem;
+      left: 1.5rem;
+      z-index: 1999;
+      width: 380px;
+      max-height: 500px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .chat-window.open {
+      display: flex;
+    }
+
+    .chat-header {
+      background: var(--bg-secondary);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .chat-header .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .chat-header .terminal-dot.red { background: #ff5f56; }
+    .chat-header .terminal-dot.yellow { background: #ffbd2e; }
+    .chat-header .terminal-dot.green { background: #27ca40; }
+
+    .chat-header-title {
+      margin-left: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .chat-header-status {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .chat-header-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      display: inline-block;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-height: 280px;
+      max-height: 360px;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 2px;
+    }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    .chat-msg.bot {
+      align-self: flex-start;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .chat-msg.user {
+      align-self: flex-end;
+      background: var(--accent-blue);
+      color: var(--text-white);
+    }
+
+    .chat-msg.bot .msg-label {
+      font-size: 0.65rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .chat-msg.user .msg-label {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .chat-typing {
+      align-self: flex-start;
+      padding: 0.6rem 0.9rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      display: none;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .chat-typing.visible {
+      display: flex;
+    }
+
+    .chat-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      animation: typingDot 1.4s infinite;
+    }
+
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingDot {
+      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-4px); }
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      gap: 0.5rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.6rem 0.9rem;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .chat-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .chat-input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .chat-send {
+      background: var(--accent-blue);
+      border: none;
+      border-radius: 6px;
+      padding: 0 0.9rem;
+      cursor: pointer;
+      color: var(--text-white);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .chat-send:hover {
+      box-shadow: 0 0 15px var(--accent-blue-glow);
+    }
+
+    .chat-send:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 500px) {
+      .chat-window {
+        width: calc(100vw - 2rem);
+        left: 1rem;
+        bottom: 4.5rem;
+      }
+
+      .chat-toggle {
+        bottom: 1rem;
+        left: 1rem;
+        width: 46px;
+        height: 46px;
+      }
+    }
+
     /* Scroll animations */
     .fade-in {
       opacity: 0;
@@ -1238,6 +1489,34 @@
     <p class="footer-text">Built by <span>William Hall</span> · 2025</p>
   </footer>
 
+  <!-- Chat Widget -->
+  <button class="chat-toggle" id="chatToggle" aria-label="Open AI chat">
+    <span id="chatToggleIcon">&gt;_</span>
+  </button>
+
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <span class="terminal-dot red"></span>
+      <span class="terminal-dot yellow"></span>
+      <span class="terminal-dot green"></span>
+      <span class="chat-header-title">qwen@homelab:~</span>
+      <span class="chat-header-status">local LLM</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        <span class="msg-label">qwen</span>
+        Hey! I'm William's local AI assistant running on his homelab. Ask me anything about his projects, skills, or experience.
+      </div>
+    </div>
+    <div class="chat-typing" id="chatTyping">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+      <button class="chat-send" id="chatSend">Send</button>
+    </div>
+  </div>
+
   <script>
     const observerOptions = {
       threshold: 0.1,
@@ -1262,6 +1541,123 @@
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
+    });
+
+    // =============================================
+    // AI Chat Widget — Ollama (Qwen) Integration
+    // =============================================
+    // TODO: Replace this URL with your Ollama server's address when you're home.
+    //       e.g. "http://192.168.1.100:11434" or your Cloudflare Tunnel URL
+    const OLLAMA_BASE_URL = "https://ai.batmap.win";
+    const OLLAMA_MODEL = "qwen:1.8b";
+
+    // System prompt that gives the AI context about you
+    const SYSTEM_PROMPT = `You are William Hall's AI assistant embedded on his portfolio website. You are running locally on his homelab via Ollama (Qwen model). Keep responses concise (2-3 sentences max). Be friendly and professional.
+
+William is a Systems Engineer & Security Analyst, MIS student at Baylor University (expected May 2027, GPA 3.5). He works as a Fraud Analyst at FanDuel investigating AML, identity theft, and fraud cases. He has 10+ years of PC hardware experience.
+
+His homelab runs Proxmox VE with multiple VMs/LXCs, Cloudflare Tunnel for zero-trust networking, GPU passthrough for AI workloads, and this very LLM (Qwen via Ollama).
+
+His projects include: Homelab infrastructure on Proxmox, Local LLM deployment (Qwen + Ollama), Game server with Dynmap via Cloudflare Tunnel, AI-powered Discord bot, Pokemon fangame (RPG Maker XP/Ruby), and a Financial Analytics Dashboard (Python/Power BI).
+
+His skills: Fraud investigation, Linux, Proxmox, networking, Python, JavaScript, SQL, Cloudflare, and AI/ML deployment.
+
+If asked something you don't know about William, say so honestly rather than making things up.`;
+
+    const chatToggle = document.getElementById('chatToggle');
+    const chatToggleIcon = document.getElementById('chatToggleIcon');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    const chatTyping = document.getElementById('chatTyping');
+
+    // Conversation history for context
+    let conversationHistory = [
+      { role: "system", content: SYSTEM_PROMPT }
+    ];
+
+    // Toggle chat open/close
+    chatToggle.addEventListener('click', () => {
+      const isOpen = chatWindow.classList.toggle('open');
+      chatToggle.classList.toggle('open', isOpen);
+      chatToggleIcon.innerHTML = isOpen ? '&#x2715;' : '&gt;_';
+      if (isOpen) chatInput.focus();
+    });
+
+    // Send message
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      // Add user message to UI
+      appendMessage('user', text);
+      chatInput.value = '';
+      chatSend.disabled = true;
+
+      // Add to history
+      conversationHistory.push({ role: "user", content: text });
+
+      // Show typing indicator
+      chatTyping.classList.add('visible');
+      scrollToBottom();
+
+      // Call Ollama API
+      fetchAIResponse();
+    }
+
+    async function fetchAIResponse() {
+      try {
+        const response = await fetch(`${OLLAMA_BASE_URL}/v1/chat/completions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: OLLAMA_MODEL,
+            messages: conversationHistory,
+            stream: false
+          })
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+        const reply = data.choices[0].message.content;
+
+        conversationHistory.push({ role: "assistant", content: reply });
+        chatTyping.classList.remove('visible');
+        appendMessage('bot', reply);
+      } catch (err) {
+        chatTyping.classList.remove('visible');
+        appendMessage('bot', 'Hmm, I can\'t reach the homelab right now. The server might be offline or unreachable from this network. Try again later!');
+        console.error('Chat error:', err);
+      } finally {
+        chatSend.disabled = false;
+        chatInput.focus();
+      }
+    }
+
+    function appendMessage(type, text) {
+      const msg = document.createElement('div');
+      msg.className = `chat-msg ${type}`;
+      const label = document.createElement('span');
+      label.className = 'msg-label';
+      label.textContent = type === 'bot' ? 'qwen' : 'you';
+      msg.appendChild(label);
+      msg.appendChild(document.createTextNode(text));
+      chatMessages.appendChild(msg);
+      scrollToBottom();
+    }
+
+    function scrollToBottom() {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
     });
   </script>
 </body>
