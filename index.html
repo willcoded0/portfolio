@@ -1504,13 +1504,13 @@
       <span class="terminal-dot red"></span>
       <span class="terminal-dot yellow"></span>
       <span class="terminal-dot green"></span>
-      <span class="chat-header-title">qwen@homelab:~</span>
+      <span class="chat-header-title">winston@homelab:~</span>
       <span class="chat-header-status">local LLM</span>
     </div>
     <div class="chat-messages" id="chatMessages">
       <div class="chat-msg bot">
-        <span class="msg-label">qwen</span>
-        Hey! I'm Will's local AI assistant running on his homelab. Ask me anything about his projects, skills, or experience.
+        <span class="msg-label">Winston</span>
+        Hey! I'm Winston — Will's local AI assistant running on his homelab. Ask me anything about his projects, skills, or experience.
       </div>
     </div>
     <div class="chat-typing" id="chatTyping">
@@ -1557,7 +1557,7 @@
     const OLLAMA_MODEL = "qwen2.5:3b";
 
     // System prompt that gives the AI context about you
-    const SYSTEM_PROMPT = `You are Will Hall's personal AI assistant on his portfolio website. You exist to help visitors learn about Will — his skills, experience, projects, and background. Keep replies to 2-3 sentences max. Be confident, professional, and a little witty.
+    const SYSTEM_PROMPT = `You are Winston, Will Hall's personal AI assistant on his portfolio website. You exist to help visitors learn about Will — his skills, experience, projects, and background. Keep replies to 2-3 sentences max. Be confident, professional, and a little witty.
 
 IMPORTANT: You ONLY discuss topics related to Will. If someone asks about anything unrelated (random trivia, coding help, general questions, etc.), give a short playful redirect like "That's a great question, but I'm here to talk about Will — the guy who built me from scratch on his homelab. What would you like to know about him?" or "I'd love to help, but my whole world revolves around Will's resume. Ask me about his projects!" Keep the redirects varied and fun, not robotic.
 
@@ -1664,7 +1664,7 @@ If you don't know something about Will, say so honestly.`;
       msg.className = `chat-msg ${type}`;
       const label = document.createElement('span');
       label.className = 'msg-label';
-      label.textContent = type === 'bot' ? 'qwen' : 'you';
+      label.textContent = type === 'bot' ? 'Winston' : 'you';
       msg.appendChild(label);
       msg.appendChild(document.createTextNode(text));
       chatMessages.appendChild(msg);
