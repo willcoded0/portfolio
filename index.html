@@ -821,6 +821,210 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ── Chat Widget ── */
+    #chat-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 20px rgba(0, 102, 255, 0.5);
+      transition: all 0.3s;
+      z-index: 2000;
+    }
+
+    #chat-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(0, 102, 255, 0.7);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      width: 360px;
+      height: 500px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-blue);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      transform: scale(0.9) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chat-header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chat-header-dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .chat-header-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .chat-header-dots .red { background: #ff5f56; }
+    .chat-header-dots .yellow { background: #ffbd2e; }
+    .chat-header-dots .green { background: #27ca40; }
+
+    .chat-header-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: 0.25rem;
+    }
+
+    .chat-header-title span {
+      color: var(--accent-blue);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .chat-msg.bot {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      align-self: flex-start;
+      border-bottom-left-radius: 3px;
+    }
+
+    .chat-msg.user {
+      background: var(--accent-blue);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 3px;
+    }
+
+    .chat-typing {
+      align-self: flex-start;
+      display: flex;
+      gap: 4px;
+      padding: 0.6rem 0.9rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      border-bottom-left-radius: 3px;
+    }
+
+    .chat-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      animation: typingBounce 1.2s infinite;
+    }
+
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); background: var(--accent-blue); }
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    #chat-input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      padding: 0.5rem 0.75rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    #chat-input:focus { border-color: var(--accent-blue); }
+    #chat-input::placeholder { color: var(--text-muted); }
+
+    #chat-send {
+      background: var(--accent-blue);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    #chat-send:hover { background: #0052cc; }
+    #chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    @media (max-width: 480px) {
+      #chat-window {
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 60vh;
+        border-radius: 12px 12px 0 0;
+      }
+      #chat-btn { bottom: 1.25rem; right: 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -1238,6 +1442,27 @@
     <p class="footer-text">Built by <span>William Hall</span> · 2026</p>
   </footer>
 
+  <!-- Chat Widget -->
+  <button id="chat-btn" title="Ask me about this portfolio" aria-label="Open chat assistant">💬</button>
+
+  <div id="chat-window" role="dialog" aria-label="Portfolio assistant">
+    <div class="chat-header">
+      <div class="chat-header-dots">
+        <span class="red"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <span class="chat-header-title"><span>portfolio</span>-assistant ~</span>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg bot">Hi! I'm an AI assistant for William's portfolio. Ask me anything about his projects, skills, or experience.</div>
+    </div>
+    <div class="chat-input-row">
+      <textarea id="chat-input" rows="1" placeholder="Ask about projects, skills, experience..." maxlength="500"></textarea>
+      <button id="chat-send" aria-label="Send">↑</button>
+    </div>
+  </div>
+
   <script>
     const observerOptions = {
       threshold: 0.1,
@@ -1263,6 +1488,137 @@
         }
       });
     });
+
+    // ── Chat Widget ──
+    const OLLAMA_URL  = 'https://ollama.batmap.win/api/chat';
+    const CHAT_MODEL  = 'qwen3.5:9b';
+    const SYSTEM_MSG  = `You are an AI assistant embedded in William Hall's portfolio website. Answer questions about William and his work based only on the information below. Be friendly, concise, and helpful.
+
+About William Hall:
+- Systems Engineer & Security Analyst
+- BBA in Management Information Systems at Baylor University, Waco TX (GPA 3.5, expected May 2027)
+- Currently seeking Summer 2026 internship in systems engineering, security, and infrastructure
+
+Experience:
+- Fraud Analyst at FanDuel (Jul 2025–Present): investigates AML, identity theft, and fraud cases; analyzes behavioral patterns and transaction anomalies
+- PC Hardware & Systems Engineering (2014–Present, Self-Directed): 10+ years building, troubleshooting, and repairing PC hardware
+
+Projects:
+1. Homelab Virtualization & Security Infrastructure (Featured) — Proxmox VE with GPU passthrough, Cloudflare Tunnel zero-trust networking, multiple VMs/LXCs. GitHub: github.com/willcoded0/homelab-infra-proxmox
+2. Local LLM Deployment — Qwen via Ollama, GPU-accelerated, LAN REST API. GitHub: github.com/willcoded0/homelab-llm-qwen
+3. Game Server + Web Map — Minecraft + Dynmap via Cloudflare Tunnel. GitHub: github.com/willcoded0/minecraft-dynmap-cloudflare-tunnel
+4. AI-Powered Discord Analyzer — Python bot using OpenAI API for message analysis and role management. GitHub: github.com/willcoded0/Role-Rotator
+5. Pokemon Fangame (Private) — RPG Maker XP with Ruby scripting, custom maps and storyline
+6. Financial Analytics Dashboard (Private) — Python/Pandas ETL + Power BI with anomaly detection
+
+Skills: Fraud Investigation, AML, Threat Detection, Linux CLI, Proxmox VE, Networking, GPU Passthrough, Python, JavaScript, SQL, HTML/CSS, Git, REST APIs, PC hardware, Cloudflare, Zero Trust, Power BI, Ollama, OpenAI API, Local LLMs
+
+Contact: will_hall1@baylor.edu | linkedin.com/in/william-hall-7091572a0/ | github.com/willcoded0
+
+If asked something not covered here, say you only have information about William's portfolio.`;
+
+    const chatBtn    = document.getElementById('chat-btn');
+    const chatWindow = document.getElementById('chat-window');
+    const chatInput  = document.getElementById('chat-input');
+    const chatSend   = document.getElementById('chat-send');
+    const chatMsgs   = document.getElementById('chat-messages');
+
+    let chatOpen = false;
+    let chatHistory = [];
+    let isLoading = false;
+
+    chatBtn.addEventListener('click', () => {
+      chatOpen = !chatOpen;
+      chatWindow.classList.toggle('open', chatOpen);
+      chatBtn.textContent = chatOpen ? '✕' : '💬';
+      if (chatOpen) chatInput.focus();
+    });
+
+    function appendMsg(text, role) {
+      const div = document.createElement('div');
+      div.className = `chat-msg ${role}`;
+      div.textContent = text;
+      chatMsgs.appendChild(div);
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      const el = document.createElement('div');
+      el.className = 'chat-typing';
+      el.id = 'chat-typing-indicator';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      chatMsgs.appendChild(el);
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('chat-typing-indicator');
+      if (el) el.remove();
+    }
+
+    async function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text || isLoading) return;
+
+      isLoading = true;
+      chatSend.disabled = true;
+      chatInput.value = '';
+      chatInput.style.height = 'auto';
+
+      appendMsg(text, 'user');
+      showTyping();
+
+      const messages = [
+        { role: 'system', content: SYSTEM_MSG },
+        ...chatHistory,
+        { role: 'user', content: text },
+      ];
+
+      try {
+        const res = await fetch(OLLAMA_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: CHAT_MODEL, messages, stream: false }),
+        });
+
+        hideTyping();
+
+        if (!res.ok) throw new Error('Request failed');
+
+        const data = await res.json();
+        const reply = data.message?.content || 'Sorry, I got an empty response.';
+        appendMsg(reply, 'bot');
+
+        chatHistory.push({ role: 'user', content: text });
+        chatHistory.push({ role: 'assistant', content: reply });
+        if (chatHistory.length > 16) chatHistory = chatHistory.slice(-16);
+
+      } catch {
+        hideTyping();
+        appendMsg("Sorry, I couldn't connect right now. The AI server may be offline.", 'bot');
+      } finally {
+        isLoading = false;
+        chatSend.disabled = false;
+        chatInput.focus();
+      }
+    }
+
+    chatSend.addEventListener('click', sendMessage);
+
+    chatInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // Auto-resize textarea
+    chatInput.addEventListener('input', () => {
+      chatInput.style.height = 'auto';
+      chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+    });
   </script>
 </body>
 </html>
+
