@@ -1579,7 +1579,7 @@ If asked something not covered here, say you only have information about William
         const res = await fetch(OLLAMA_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: CHAT_MODEL, messages, stream: false }),
+          body: JSON.stringify({ model: CHAT_MODEL, messages, stream: false, think: false }),
         });
 
         hideTyping();
