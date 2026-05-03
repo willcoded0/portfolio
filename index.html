@@ -1089,7 +1089,7 @@
             </div>
             <div class="terminal-line">
               <span class="terminal-label">VMs Running: </span>
-              <span class="terminal-value">Linux, Game Servers, LLMs</span>
+              <span class="terminal-value">Linux, Game Servers, LLMs, Automation</span>
             </div>
             <div class="terminal-line">
               <span class="terminal-label">Network: </span>
@@ -1135,14 +1135,14 @@
             <span class="featured-badge">⭐ FEATURED PROJECT</span>
             <h3 class="project-title">Homelab Virtualization & Security Infrastructure</h3>
             <p class="project-description">
-              Enterprise-grade home infrastructure running on Proxmox VE with secure external access, 
-              GPU passthrough for AI workloads, and zero-trust networking principles.
+              Enterprise-grade home infrastructure running on Proxmox VE with secure external access,
+              GPU-backed AI workloads, service monitoring, and zero-trust networking principles.
             </p>
             <ul class="feature-list">
-              <li>Multiple VMs/LXCs running Linux services, game servers, databases</li>
-              <li>GPU passthrough for hardware-accelerated AI inference</li>
+              <li>Multiple VMs/LXCs running Linux services, dashboards, game servers, and databases</li>
+              <li>GPU passthrough for hardware-accelerated Ollama inference and portfolio chatbot hosting</li>
               <li>Cloudflare Tunnel for secure, zero-trust service exposure</li>
-              <li>Automated backups, network bridges, and storage pools</li>
+              <li>Documented runbooks for storage incidents, DNS/DHCP, backups, and service recovery</li>
             </ul>
             <div class="project-tags">
               <span class="project-tag">Proxmox</span>
@@ -1157,7 +1157,7 @@
           </div>
         </div>
 
-        <!-- Local LLM -->
+        <!-- Portfolio AI Assistant -->
         <div class="project-card fade-in">
           <div class="project-image">
             <span class="project-icon">🤖</span>
@@ -1167,15 +1167,15 @@
               <span class="project-tag">Ollama</span>
               <span class="project-tag">Qwen</span>
               <span class="project-tag">REST API</span>
-              <span class="project-tag">GPU</span>
+              <span class="project-tag">Cloudflare</span>
             </div>
-            <h3 class="project-title">Local LLM Deployment</h3>
+            <h3 class="project-title">GPU-Backed Portfolio AI Assistant</h3>
             <p class="project-description">
-              Self-hosted large language model using Qwen via Ollama, exposed as a LAN-accessible 
-              API endpoint for other homelab services with GPU acceleration.
+              Static GitHub Pages portfolio connected to a self-hosted Qwen/Ollama backend through a
+              Cloudflare Tunnel proxy with CORS, rate limiting, prompt control, and no exposed bearer token.
             </p>
-            <a href="https://github.com/willcoded0/homelab-llm-qwen" class="project-link" target="_blank">
-              View Repository
+            <a href="https://github.com/willcoded0/portfolio" class="project-link" target="_blank">
+              View Portfolio Repo
             </a>
           </div>
         </div>
@@ -1190,11 +1190,12 @@
               <span class="project-tag">Cloudflare Tunnel</span>
               <span class="project-tag">Dynmap</span>
               <span class="project-tag">DNS</span>
+              <span class="project-tag">Ops</span>
             </div>
-            <h3 class="project-title">Game Server + Web Map</h3>
+            <h3 class="project-title">Minecraft Server + Live Dashboard</h3>
             <p class="project-description">
-              Minecraft server with Dynmap web interface securely exposed to the internet via
-              Cloudflare Tunnel with custom DNS routing and reverse proxy configuration.
+              Public Minecraft infrastructure with Dynmap, Cloudflare Tunnel, a custom web dashboard,
+              live chat bridge, playtime leaderboard, backups, and documented mod/debug recovery runbooks.
             </p>
             <a href="https://github.com/willcoded0/minecraft-dynmap-cloudflare-tunnel" class="project-link" target="_blank">
               View Repository
@@ -1202,51 +1203,53 @@
           </div>
         </div>
 
-        <!-- Discord Bot -->
+        <!-- Storage Store -->
         <div class="project-card fade-in">
           <div class="project-image">
-            <span class="project-icon">💬</span>
+            <span class="project-icon">🛒</span>
           </div>
           <div class="project-content">
             <div class="project-tags">
-              <span class="project-tag">Python</span>
-              <span class="project-tag">OpenAI API</span>
-              <span class="project-tag">Discord.py</span>
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">GitHub Pages</span>
             </div>
-            <h3 class="project-title">AI-Powered Discord Analyzer</h3>
+            <h3 class="project-title">SnackSafe Storage Store</h3>
             <p class="project-description">
-              Intelligent bot using OpenAI API for message analysis, pattern recognition, 
-              and automated role management based on behavioral metrics.
+              Responsive product website for a school ecommerce project with a custom image carousel,
+              mobile-first gallery fixes, scroll-snap navigation, and polished product photography treatment.
             </p>
-            <a href="https://github.com/willcoded0/Role-Rotator" class="project-link" target="_blank">
+            <a href="https://github.com/willcoded0/storage-store" class="project-link" target="_blank">
               View Repository
             </a>
           </div>
         </div>
 
-        <!-- Pokemon Fangame -->
+        <!-- Job Automation -->
         <div class="project-card fade-in">
           <div class="project-image">
-            <span class="project-icon">🎲</span>
+            <span class="project-icon">🧭</span>
           </div>
           <div class="project-content">
             <div class="project-tags">
-              <span class="project-tag">RPG Maker XP</span>
-              <span class="project-tag">Ruby</span>
-              <span class="project-tag">Game Dev</span>
+              <span class="project-tag">Playwright</span>
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Automation</span>
             </div>
-            <h3 class="project-title">Pokémon Fangame</h3>
+            <h3 class="project-title">Handshake Job Application Copilot</h3>
             <p class="project-description">
-              A full Pokémon fangame created in RPG Maker XP with custom maps, original storylines, 
-              gym battles, and scripted battle mechanics using Ruby.
+              Built a guarded job-search automation system that scans Handshake through Chrome CDP,
+              scores roles, drafts application packets, queues approvals, and stops before final submission.
             </p>
             <span class="project-link" style="color: var(--text-muted);">
-              Private Project
+              Private Infrastructure
             </span>
           </div>
         </div>
 
-        <!-- Power BI Dashboard -->
+        <!-- Financial Dashboard -->
         <div class="project-card fade-in">
           <div class="project-image">
             <span class="project-icon">📊</span>
@@ -1255,16 +1258,40 @@
             <div class="project-tags">
               <span class="project-tag">Python</span>
               <span class="project-tag">Pandas</span>
-              <span class="project-tag">Power BI</span>
+              <span class="project-tag">Plotly</span>
+              <span class="project-tag">Ollama</span>
             </div>
             <h3 class="project-title">Financial Analytics Dashboard</h3>
             <p class="project-description">
-              Automated ETL pipeline ingesting bank transactions, reconciling payments, 
-              and visualizing spend vs. income trends with anomaly detection.
+              Local ETL pipeline for bank CSVs with auto-categorization, duplicate detection, budgets,
+              anomaly detection, recurring transaction analysis, and an Ollama-powered finance assistant.
             </p>
-            <span class="project-link" style="color: var(--text-muted);">
-              Private Repository
-            </span>
+            <a href="https://github.com/willcoded0/financial-dashboard" class="project-link" target="_blank">
+              View Repository
+            </a>
+          </div>
+        </div>
+
+        <!-- Desktop/QML Plugin -->
+        <div class="project-card fade-in">
+          <div class="project-image">
+            <span class="project-icon">🖼️</span>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">QML</span>
+              <span class="project-tag">Quickshell</span>
+              <span class="project-tag">ImageMagick</span>
+              <span class="project-tag">Real-ESRGAN</span>
+            </div>
+            <h3 class="project-title">Spanning Wallpaper Plugin</h3>
+            <p class="project-description">
+              Noctalia plugin that treats multiple monitors as one canvas, crops the correct slice per display,
+              supports cached thumbnails, IPC controls, auto-rotation, and optional AI upscaling.
+            </p>
+            <a href="https://github.com/willcoded0/spanning-wallpaper" class="project-link" target="_blank">
+              View Repository
+            </a>
           </div>
         </div>
       </div>
@@ -1304,6 +1331,7 @@
             <span class="skill-item">Networking</span>
             <span class="skill-item">GPU Passthrough</span>
             <span class="skill-item">Bash Scripting</span>
+            <span class="skill-item">Service Runbooks</span>
           </div>
         </div>
 
@@ -1315,8 +1343,10 @@
           <div class="skill-list">
             <span class="skill-item">Python</span>
             <span class="skill-item">JavaScript</span>
+            <span class="skill-item">Node.js</span>
             <span class="skill-item">SQL</span>
             <span class="skill-item">HTML/CSS</span>
+            <span class="skill-item">QML</span>
             <span class="skill-item">Git / GitHub</span>
             <span class="skill-item">REST APIs</span>
           </div>
@@ -1345,7 +1375,8 @@
             <span class="skill-item">Cloudflare</span>
             <span class="skill-item">Zero Trust</span>
             <span class="skill-item">DNS Config</span>
-            <span class="skill-item">Power BI</span>
+            <span class="skill-item">GitHub Pages</span>
+            <span class="skill-item">Playwright/CDP</span>
             <span class="skill-item">Ollama</span>
           </div>
         </div>
@@ -1360,6 +1391,7 @@
             <span class="skill-item">Local LLMs</span>
             <span class="skill-item">Prompt Engineering</span>
             <span class="skill-item">Model Deployment</span>
+            <span class="skill-item">RAG-style Context</span>
           </div>
         </div>
       </div>
@@ -1590,4 +1622,3 @@
   </script>
 </body>
 </html>
-
