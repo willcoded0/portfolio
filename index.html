@@ -1490,32 +1490,7 @@
     });
 
     // ── Chat Widget ──
-    const OLLAMA_URL  = 'https://ollama.batmap.win/api/chat';
-    const CHAT_MODEL  = 'qwen3.5:9b';
-    const SYSTEM_MSG  = `You are an AI assistant embedded in William Hall's portfolio website. Answer questions about William and his work based only on the information below. Be friendly, concise, and helpful.
-
-About William Hall:
-- Systems Engineer & Security Analyst
-- BBA in Management Information Systems at Baylor University, Waco TX (GPA 3.5, expected May 2027)
-- Currently seeking Summer 2026 internship in systems engineering, security, and infrastructure
-
-Experience:
-- Fraud Analyst at FanDuel (Jul 2025–Present): investigates AML, identity theft, and fraud cases; analyzes behavioral patterns and transaction anomalies
-- PC Hardware & Systems Engineering (2014–Present, Self-Directed): 10+ years building, troubleshooting, and repairing PC hardware
-
-Projects:
-1. Homelab Virtualization & Security Infrastructure (Featured) — Proxmox VE with GPU passthrough, Cloudflare Tunnel zero-trust networking, multiple VMs/LXCs. GitHub: github.com/willcoded0/homelab-infra-proxmox
-2. Local LLM Deployment — Qwen via Ollama, GPU-accelerated, LAN REST API. GitHub: github.com/willcoded0/homelab-llm-qwen
-3. Game Server + Web Map — Minecraft + Dynmap via Cloudflare Tunnel. GitHub: github.com/willcoded0/minecraft-dynmap-cloudflare-tunnel
-4. AI-Powered Discord Analyzer — Python bot using OpenAI API for message analysis and role management. GitHub: github.com/willcoded0/Role-Rotator
-5. Pokemon Fangame (Private) — RPG Maker XP with Ruby scripting, custom maps and storyline
-6. Financial Analytics Dashboard (Private) — Python/Pandas ETL + Power BI with anomaly detection
-
-Skills: Fraud Investigation, AML, Threat Detection, Linux CLI, Proxmox VE, Networking, GPU Passthrough, Python, JavaScript, SQL, HTML/CSS, Git, REST APIs, PC hardware, Cloudflare, Zero Trust, Power BI, Ollama, OpenAI API, Local LLMs
-
-Contact: will_hall1@baylor.edu | linkedin.com/in/william-hall-7091572a0/ | github.com/willcoded0
-
-If asked something not covered here, say you only have information about William's portfolio.`;
+    const CHAT_API_URL = '/api/chat';
 
     const chatBtn    = document.getElementById('chat-btn');
     const chatWindow = document.getElementById('chat-window');
@@ -1569,17 +1544,11 @@ If asked something not covered here, say you only have information about William
       appendMsg(text, 'user');
       showTyping();
 
-      const messages = [
-        { role: 'system', content: SYSTEM_MSG },
-        ...chatHistory,
-        { role: 'user', content: text },
-      ];
-
       try {
-        const res = await fetch(OLLAMA_URL, {
+        const res = await fetch(CHAT_API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: CHAT_MODEL, messages, stream: false, think: false }),
+          body: JSON.stringify({ message: text, history: chatHistory }),
         });
 
         hideTyping();
@@ -1587,7 +1556,7 @@ If asked something not covered here, say you only have information about William
         if (!res.ok) throw new Error('Request failed');
 
         const data = await res.json();
-        const reply = data.message?.content || 'Sorry, I got an empty response.';
+        const reply = data.reply || 'Sorry, I got an empty response.';
         appendMsg(reply, 'bot');
 
         chatHistory.push({ role: 'user', content: text });
@@ -1596,7 +1565,7 @@ If asked something not covered here, say you only have information about William
 
       } catch {
         hideTyping();
-        appendMsg("Sorry, I couldn't connect right now. The AI server may be offline.", 'bot');
+        appendMsg("Sorry, I couldn't connect right now. The portfolio AI server may be warming up or offline.", 'bot');
       } finally {
         isLoading = false;
         chatSend.disabled = false;
