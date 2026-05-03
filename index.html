@@ -445,6 +445,96 @@
       transform: translateX(4px);
     }
 
+
+
+    /* Case Studies */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .case-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      opacity: 0.8;
+    }
+
+    .case-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .case-title {
+      color: var(--text-white);
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .case-copy {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .case-list {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .case-list li {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .case-list li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+    }
+
+    .case-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .case-proof span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.28rem 0.55rem;
+      border: 1px solid var(--border-color);
+      color: var(--accent-cyan);
+      background: var(--bg-secondary);
+      border-radius: 4px;
+    }
+
     /* Featured Project */
     .featured-project {
       grid-column: 1 / -1;
@@ -1037,6 +1127,7 @@
       <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1278,6 +1369,79 @@
         </div>
       </div>
     </section>
+
+
+
+    <!-- Case Studies Section -->
+    <section id="case-studies">
+      <div class="section-header fade-in">
+        <p class="section-label">// Showing the Work</p>
+        <h2 class="section-title">Engineering Case Studies</h2>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card fade-in">
+          <p class="case-kicker">AI Infrastructure</p>
+          <h3 class="case-title">Portfolio Assistant: Static Site + Self-Hosted LLM</h3>
+          <p class="case-copy">
+            The portfolio is static GitHub Pages, but the chatbot runs through a homelab-backed Qwen/Ollama service. I separated the browser from the model host with a proxy so secrets, prompt policy, and rate limits stay server-side.
+          </p>
+          <ul class="case-list">
+            <li>Browser calls a public portfolio endpoint instead of direct Ollama access.</li>
+            <li>Cloudflare Tunnel provides HTTPS without exposing home network ports.</li>
+            <li>Proxy owns CORS, request limits, output caps, and portfolio-specific system context.</li>
+            <li>GPU-backed VM keeps inference local while still giving visitors an interactive demo.</li>
+          </ul>
+          <div class="case-proof"><span>GitHub Pages</span><span>Cloudflare Tunnel</span><span>Ollama/Qwen</span><span>Proxy API</span></div>
+        </article>
+
+        <article class="case-card fade-in">
+          <p class="case-kicker">Live Ops Dashboard</p>
+          <h3 class="case-title">Minecraft Dashboard: Logs, Dynmap, and Resume-Safe Views</h3>
+          <p class="case-copy">
+            The Minecraft project is not just a hosted map. I built a companion dashboard that turns server files and logs into useful live status while keeping the recruiter-facing version clean.
+          </p>
+          <ul class="case-list">
+            <li>Parses Minecraft logs for online players, join/leave events, chat, and playtime totals.</li>
+            <li>Reads modded season state from <code>seasons.dat</code> and displays current season progress.</li>
+            <li>Embeds Dynmap centered on the main city and exposes it through Cloudflare Tunnel.</li>
+            <li>Maintains two views: friends get live chat, recruiters get <code>/resume</code> with chat removed at render and API levels.</li>
+          </ul>
+          <div class="case-proof"><span>Python HTTP server</span><span>Systemd</span><span>Dynmap</span><span>Log parsing</span></div>
+        </article>
+
+        <article class="case-card fade-in">
+          <p class="case-kicker">Data Pipeline</p>
+          <h3 class="case-title">Financial Dashboard: Local ETL + Anomaly Detection</h3>
+          <p class="case-copy">
+            The finance dashboard converts raw bank exports into a self-contained analytics page, with the pipeline doing categorization and analysis before the browser ever opens the report.
+          </p>
+          <ul class="case-list">
+            <li>Ingests multiple CSV formats and normalizes them into one transaction model.</li>
+            <li>Uses keyword rules for repeatable categorization instead of hand-editing every row.</li>
+            <li>Flags duplicate transfers, recurring charges, category anomalies, budgets, and top merchants.</li>
+            <li>Embeds output into a portable HTML report with optional local Ollama assistant context.</li>
+          </ul>
+          <div class="case-proof"><span>Python</span><span>Pandas</span><span>Plotly</span><span>Local-first</span></div>
+        </article>
+
+        <article class="case-card fade-in">
+          <p class="case-kicker">Homelab Reliability</p>
+          <h3 class="case-title">Proxmox Homelab: Secure Services and Recovery Runbooks</h3>
+          <p class="case-copy">
+            The homelab is treated like a small production environment: isolated services, Cloudflare Access, backups, documentation, and recovery procedures for when something breaks.
+          </p>
+          <ul class="case-list">
+            <li>Runs Linux VMs/LXCs for dashboards, AI services, game servers, DNS, and storage-backed apps.</li>
+            <li>Uses Cloudflare Tunnel/Zero Trust instead of router port forwarding.</li>
+            <li>Documents fixes for storage pressure, Docker-in-LXC, Pi-hole DHCP/DNS, and GPU passthrough.</li>
+            <li>Maintains practical runbooks so fixes are repeatable rather than one-off terminal history.</li>
+          </ul>
+          <div class="case-proof"><span>Proxmox VE</span><span>LXC/KVM</span><span>ZFS/LVM</span><span>Cloudflare Zero Trust</span></div>
+        </article>
+      </div>
+    </section>
+
 
     <!-- Skills Section -->
     <section id="skills">
